@@ -1,0 +1,20 @@
+name: test git hub actions
+
+on:
+    push:
+        branches: [ test_ci ]
+
+    workflow_dispatch:
+
+jobs:
+    hello:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: say hello
+              run: echo "hello"
+              shell: bash
+
+            - name: say goodbye
+              run: echo "goodby"
+              shell: bash
