@@ -20,6 +20,20 @@ jobs:
                   This is a multi-line test comment
                   - With GitHub **Markdown** :sparkles:
                   - Created by [create-or-update-comment][1]
-      
-    
+                  
+    create-with-api:
+      runs-on: ubuntu-lates
+      steps:
+        - name: create comment using API github
+          run: |
+            gh api -X POST \
+              htttp://api.github.com/repo/${ORGANIZATION}/${REPOSITORY}/issues/${ISSUE_NUM} \
+              -f body=' 
+              Comment from the API call
+              '
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            ORGANIZATION: ${{ github.event.organization.login }}
+            REPOSITORY: ${{ github.event.repository.name }}
+            ISSUE_NUM: ${{ github.event.issue.number }}
 
